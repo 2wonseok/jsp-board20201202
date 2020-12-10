@@ -12,19 +12,22 @@
 <title>로그인</title>
 </head>
 <body>
-<form action="login.do" method="post">
-	<c:if test="${eroors.idOrPwNotMatch }">\
-		아이디와 암호가 일치하지 않습니다.
-	</c:if>
-	<p>
-		아이디: <br /><input type="text" class="form-control" style="width:300px" name="id" id="" value="${param.id}" />
-		<c:if test="${errors.id }">아이디를 입력하세요.</c:if>
-	</p>
-	<p>
-		암호: <br /><input type="password" class="form-control" style="width:300px" name="password"  />
-		<c:if test="${errors.password }">암호를 입력하세요.</c:if>
-	</p>
-	<input type="submit" value="로그인" class="btn btn-primary"/>
-</form>
+<div class="container">
+	<form action="login.do" method="post">
+		<c:if test="${eroors.idOrPwNotMatch }">\
+			아이디와 암호가 일치하지 않습니다.
+		</c:if>
+		<p>
+			아이디: <br /><input type="text" class="form-control" style="width:300px" name="id" id="" value="${param.id}" />
+			<c:if test="${errors.id }">아이디를 입력하세요.</c:if>
+		</p>
+		<p>
+			암호: <br /><input type="password" class="form-control" style="width:300px" name="password"  />
+			<c:if test="${errors.password }">암호를 입력하세요.</c:if>
+		</p>
+		<input type="submit" value="로그인" class="btn btn-primary"/>
+		<a href="join.do" class="btn btn-success">회원가입</a>
+	</form>
+</div>
 </body>
 </html>

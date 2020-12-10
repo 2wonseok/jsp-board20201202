@@ -55,10 +55,10 @@ public class MemberDao {
 		}
 	}
 
-	public void remove(Connection conn, String id) throws SQLException {
+	public void remove(Connection conn, Member member) throws SQLException {
 		String sql = "DELETE FROM member WHERE memberid = ?";
 		try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
-			pstmt.setString(1, id);
+			pstmt.setString(1, member.getId());
 			
 			pstmt.executeUpdate();
 		}

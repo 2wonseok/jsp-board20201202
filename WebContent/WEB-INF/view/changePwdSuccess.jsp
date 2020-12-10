@@ -13,7 +13,8 @@
 </head>
 <body>
 
-암호를 변경했습니다.
+암호를 변경했습니다. <br />
+<a href="index.jsp" class="btn-sm btn-default">메인으로</a>
 
 </body>
 </html>

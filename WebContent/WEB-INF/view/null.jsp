@@ -14,6 +14,7 @@
 <body>
 <div class="container">
 	<h1>잘못된 경로입니다.</h1>
+	<a href="index.jsp" class="btn-sm btn-default">메인으로</a>
 </div>
 </body>
 </html>

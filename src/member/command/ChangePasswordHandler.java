@@ -42,7 +42,7 @@ public class ChangePasswordHandler implements CommandHandler {
 		if (curPwd == null || curPwd.isEmpty()) {
 			errors.put("curPwd", Boolean.TRUE);
 		}
-		if (curPwd == null || curPwd.isEmpty()) {
+		if (newPwd == null || newPwd.isEmpty()) {
 			errors.put("newPwd", Boolean.TRUE);
 		}
 		if (!errors.isEmpty()) {

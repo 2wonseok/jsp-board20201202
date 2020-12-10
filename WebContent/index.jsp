@@ -12,16 +12,17 @@
 <title>회원제 게시판 예제</title>
 </head>
 <body>
-<u:isLogin>
-	${authUser.name }님, 안녕하세요.
-	<a href="logout.do">[로그아웃]</a>
-	<a href="changePwd.do">[암호변경]</a>
-	<a href="remove.do?id=${authUser.id }">[회원탈퇴]</a>
-</u:isLogin>
-<u:notLogin>
-	<a href="join.do">[회원가입하기]</a>
-	<a href="login.do">[로그인하기]</a>
-</u:notLogin>
-
+<div class="container">
+	<u:isLogin>
+		${authUser.name }님, 안녕하세요.
+		<a href="logout.do">[로그아웃]</a>
+		<a href="changePwd.do">[암호변경]</a>
+		<a href="remove.do">[회원탈퇴]</a>
+	</u:isLogin>
+	<u:notLogin>
+		<a href="join.do">[회원가입하기]</a>
+		<a href="login.do">[로그인하기]</a>
+	</u:notLogin>
+</div>
 </body>
 </html>

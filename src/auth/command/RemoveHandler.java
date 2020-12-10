@@ -9,18 +9,21 @@ import javax.servlet.http.HttpSession;
 
 import auth.service.LoginFailException;
 import auth.service.RemoveService;
+import auth.service.User;
+import member.model.Member;
+import member.service.DuplicateIdException;
 import mvc.command.CommandHandler;
 
 public class RemoveHandler implements CommandHandler {
-	private static final String FORM_VIEW = "index";
+	private static final String FORM_VIEW = "removeMemberForm";
 	private RemoveService removeService = new RemoveService();
 	
 	@Override
 	public String process(HttpServletRequest req, HttpServletResponse res) throws Exception {
 		if (req.getMethod().equalsIgnoreCase("GET")) {
-			return processSubmit(req, res);
-		} else if (req.getMethod().equalsIgnoreCase("POST")) {
 			return processForm(req, res);
+		} else if (req.getMethod().equalsIgnoreCase("POST")) {
+			return processSubmit(req, res);
 		} else {
 			res.setStatus(HttpServletResponse.SC_METHOD_NOT_ALLOWED);
 			return null;
@@ -32,13 +35,20 @@ public class RemoveHandler implements CommandHandler {
 	}
 	
 	public String processSubmit(HttpServletRequest req, HttpServletResponse res) throws Exception {
-		String id = req.getParameter("id").trim();
+		Member mem = new Member();
+		
+		mem.setId(req.getParameter("id").trim());
+		mem.setPassword(req.getParameter("password").trim());
 
 		Map<String, Boolean> errors = new HashMap<>();
 		req.setAttribute("errors", errors);
 		
-		if (id == null || id.isEmpty()) {
+		if (mem.getId() == null || mem.getId().isEmpty()) {
 			errors.put("id", Boolean.TRUE);
+		} 
+		
+		if (mem.getPassword() == null || mem.getPassword().isEmpty()) {
+			errors.put("password", Boolean.TRUE);
 		} 
 		
 		if (!errors.isEmpty()) {
@@ -49,16 +59,16 @@ public class RemoveHandler implements CommandHandler {
 		try {
 			HttpSession session = req.getSession(false);
 			
+			removeService.removeMember(mem);
+			
 			if (session != null) {
 				session.invalidate();
 			}
 			
-			removeService.remove(id);
-			res.sendRedirect(req.getContextPath() + "/login.do");
-			return null;
+			return "removeSuccess";
 			
-		} catch (LoginFailException e) {
-			errors.put("idOrPwNotMatch", Boolean.TRUE);
+		} catch (DuplicateIdException e) {
+			errors.put("PwNotMatch", Boolean.TRUE);
 			return FORM_VIEW;
 		}
 		

@@ -13,14 +13,14 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 /**
- * Servlet Filter implementation class LoginCheckFiler
+ * Servlet Filter implementation class LoginCheckFilter
  */
-public class LoginCheckFiler implements Filter {
+public class LoginCheckFilter implements Filter {
 
     /**
      * Default constructor. 
      */
-    public LoginCheckFiler() {
+    public LoginCheckFilter() {
         // TODO Auto-generated constructor stub
     }
 
@@ -34,15 +34,16 @@ public class LoginCheckFiler implements Filter {
 	/**
 	 * @see Filter#doFilter(ServletRequest, ServletResponse, FilterChain)
 	 */
-	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
-		HttpServletRequest req = (HttpServletRequest) request;
-		HttpSession session = req.getSession(false);
+	public void doFilter(ServletRequest req, ServletResponse res, FilterChain chain) throws IOException, ServletException {
+		HttpServletRequest request = (HttpServletRequest) req;
+		HttpServletResponse response = (HttpServletResponse) res;
+		
+		HttpSession session = request.getSession(false);
 		
 		if (session == null || session.getAttribute("authUser") == null) {
-			HttpServletResponse res = (HttpServletResponse) response;
-			res.sendRedirect(req.getContextPath() + "/login.do");
+			response.sendRedirect(request.getContextPath() + "/login.do");
 		} else {
-			chain.doFilter(request, response);
+			chain.doFilter(req, res);
 		}
 	}
 

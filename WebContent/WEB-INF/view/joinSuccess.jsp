@@ -12,6 +12,9 @@
 <title>가입 완료</title>
 </head>
 <body>
-${param.name }님, 회원 가입에 성공했습니다.
+<div class="container">
+${param.name }님, 회원 가입에 성공했습니다. <br />
+<a href="index.jsp" class="btn-sm btn-default">메인으로</a>
+</div>
 </body>
 </html>

@@ -32,7 +32,7 @@
 			<c:if test="${errors.confirmPassword }">확인을 입력하세요.</c:if>
 			<c:if test="${errors.notMatch }">암호와 확인이 일치하지 않습니다.</c:if>
 		</p>
-		<input type="submit" value="가입" class="btn btn-success"/>
+		<input type="submit" value="가입" class="btn btn-primary"/>
 	</form>
 </div>
 </body>
