@@ -2,9 +2,16 @@ package article.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
+import article.model.Article;
 import article.model.ArticleContent;
+import article.model.Writer;
 import jdbc.JdbcUtil;
 
 public class ArticleContentDao {
@@ -15,7 +22,7 @@ public class ArticleContentDao {
 								+"(article_no, content) VALUES (?, ?)";
 		try {
 			pstmt = conn.prepareStatement(sql);			
-			pstmt.setLong(1, content.getNumber());
+			pstmt.setInt(1, content.getNumber());
 			pstmt.setString(2, content.getContent());
 			int insertedCount = pstmt.executeUpdate();
 			
