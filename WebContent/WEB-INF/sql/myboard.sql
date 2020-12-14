@@ -55,7 +55,7 @@ WHERE rn BETWEEN 1 AND 5;
 
 SELECT rn, article_no, writer_id, writer_name, title, regdate, moddate, read_cnt FROM (SELECT article_no, writer_id, writer_name, title, regdate, moddate, read_cnt, ROW_NUMBER() OVER (ORDER BY article_no DESC) rn FROM article) WHERE rn  BETWEEN 1 AND 5;
 
-SELECT * FROM (SELECT article_no, writer_id, writer_name, title, regdate, moddate, read_cnt, ROW_NUMBER() OVER (ORDER BY article_no DESC) rn FROM article) WHERE rn  BETWEEN 1 AND 5;
+SELECT * FROM (SELECT ROW_NUMBER() OVER (ORDER BY article_no DESC) rn, article_no, writer_id, writer_name, title, regdate, moddate, read_cnt FROM article) WHERE rn  BETWEEN 1 AND 5;
 
 SELECT * FROM article ORDER BY article_no DESC OFFSET 6 ROWS FETCH FIRST 10 ROWS ONLY;
 

@@ -11,7 +11,7 @@ import jdbc.ConnectionProvider;
 public class ListArticleService {
 	
 	private ArticleDao articleDao = new ArticleDao();
-	private int size = 5;
+	private int size = 10;
 	
 	public ArticlePage getArticlePage(int pageNum) {
 		try (Connection conn = ConnectionProvider.getConnection()) {
