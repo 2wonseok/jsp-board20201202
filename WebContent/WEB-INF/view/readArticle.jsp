@@ -52,6 +52,11 @@
 			</td>
 		</tr>
 	</table>
+
+	<u:listReply articleNo="${articleData.article.number }" pageNo="${pageNo }"/>
+	
+	<u:replyForm articleNo="${articleData.article.number }" pageNo="${pageNo }" modReply="${modReplys.body }"/>
+	
 </div>
 </body>
 </html>
