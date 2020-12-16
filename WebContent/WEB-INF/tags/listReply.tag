@@ -3,7 +3,7 @@
 <%@ attribute name ="articleNo" type="java.lang.Integer" %>
 <%@ attribute name ="pageNo" type="java.lang.Integer" %>
 
-<div>
+<div class="mt-3">
 	<c:forEach items="${replyList }" var="reply">
 	<table class="table">
 		<tr>

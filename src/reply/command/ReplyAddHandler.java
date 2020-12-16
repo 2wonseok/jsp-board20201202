@@ -16,10 +16,17 @@ public class ReplyAddHandler implements CommandHandler {
 		HttpSession session = req.getSession();
 		User user = (User) session.getAttribute("authUser");
 		
+		String modReply = req.getParameter("modReply");
+		String replyId = req.getParameter("replyId");
+		
 		int articleNo = Integer.parseInt(req.getParameter("no"));
 		String userId = user.getId();
 		String body = req.getParameter("body");
 		String pageNo = req.getParameter("pageNo");
+		
+//		if (modReply != null && replyId != null) {
+//			addService.modify(replyId, articleNo, body);
+//		} 
 		
 		addService.add(userId, articleNo, body);
 

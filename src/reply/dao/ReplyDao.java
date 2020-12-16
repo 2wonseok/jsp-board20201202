@@ -89,5 +89,18 @@ public class ReplyDao {
 		
 		return null;
 	}
+
+	public void update(Connection conn, String replyId, int articleNo, String body) throws SQLException {
+		String sql = "UPDATE reply SET "
+								+"body= ? "
+								+"WHERE replyid = ?";
+
+		try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+		pstmt.setString(1, body);
+		pstmt.setString(2, replyId);
+		
+		pstmt.executeUpdate();
+		}
+	}
 	
 }

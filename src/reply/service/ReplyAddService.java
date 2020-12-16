@@ -23,4 +23,17 @@ public class ReplyAddService {
 		}
 	}
 
+	public void modify(String replyId, int articleNo, String body) throws SQLException {
+		Connection conn = null;
+		
+		try {
+			
+			conn = ConnectionProvider.getConnection();
+			dao.update(conn, replyId, articleNo, body);
+		
+		} finally {
+			JdbcUtil.close(conn);
+		}
+	}
+
 }
